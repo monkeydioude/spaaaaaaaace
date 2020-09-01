@@ -17,8 +17,8 @@ function getApplicationDirection(a, b, acc, delta) {
     debug.Write("<" + acc + ">");
     // console.log(acc)
     // debug.Write("<" + acc + ">");
-    // a.x += acc * xRatio * (dx > 0 ? -1 : 1) * delta;
-    // a.y += acc * (1 - xRatio) * (dy > 0 ? -1 : 1) * delta;
+    a.x += acc * xRatio * (dx > 0 ? -1 : 1) * delta;
+    a.y += acc * (1 - xRatio) * (dy > 0 ? -1 : 1) * delta;
 }
 
 function attraction(planet, planets, delta) {
