@@ -67,7 +67,6 @@ function process(delta, planets) {
             }
 
             thisPlanet.update(getsPulledByThisPlanet, gravityForce, delta);
-            // Gravity.getApplicationDirection(thisPlanet, getsPulledByThisPlanet, gravityForce, delta);
         }
         // handleCollision(obj, planets);
 

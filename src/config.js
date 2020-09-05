@@ -8,7 +8,7 @@ let zoomLevel = 1;
 let zoomActionPow = 0.10;
 let decalByMove = 25;
 
-let maxPlanets = 2;
+let maxPlanets = 3;
 let planetsRadiusDef = {min: 20, max: 60};
 let planetsMinDist = 10;
 let planetBaseSpeed = 0.5;

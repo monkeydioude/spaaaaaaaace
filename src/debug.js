@@ -19,7 +19,7 @@ Debug.prototype.Toggle = function() {
 }
 
 Debug.prototype.dummyDefPlanets = function (objs) {
-    let r = [Planets.getComputedRadius(0.15), Planets.getComputedRadius(0.9)]
+    let r = [Planets.getComputedRadius(0.15), Planets.getComputedRadius(1.3)]
     objs[0] = new Planet(
         0, 
         (canvas.width / 3) + decalX - 300, 
@@ -27,7 +27,7 @@ Debug.prototype.dummyDefPlanets = function (objs) {
         ((Math.PI * r[0] * r[0]) / 1000).toFixed(2), 
         r[0], 
         "#"+ (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16),
-        new Velocity(100, -80)
+        new Velocity(190, -110)
     )
     objs[1] = new Planet(
         1, 
@@ -37,6 +37,15 @@ Debug.prototype.dummyDefPlanets = function (objs) {
         r[1], 
         "#"+ (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16),
         new Velocity()
+    )
+    objs[2] = new Planet(
+        0, 
+        (canvas.width / 2) + decalX - 300, 
+        (canvas.height / 1.2) + decalY, 
+        ((Math.PI * r[0] * r[0]) / 1000).toFixed(2), 
+        r[0], 
+        "#"+ (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16),
+        new Velocity(-265, 0)
     )
     // objs[2].x = canvas.width / 2;
     // objs[2].y = canvas.height / 2;
