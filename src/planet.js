@@ -5,25 +5,28 @@ let COLLISION_STATE = {
     "EXIT": 3
 };
 
-var Hoshi = function(id, x, y, mass, r, c) {
+var Planet = function(id, x, y, mass, r, c, v) {
     this.id = id;
     this.x = x;
     this.y = y;
     this.r = r;
     this.c = c;
     this.mass = mass;
-    this.motion = new Motion().random();
     this.colliding = false;
     this.collisionState = COLLISION_STATE["NOT"];
+    this.velocity = v
 }
 
-Hoshi.prototype.update = function(delta) {
-    let v = this.motion.computeCoords(this.x, this.y, delta);
-    this.x += v.x;
-    this.y += v.y
+Planet.prototype.update = function(b, gravityForce, delta) {
+    const accV2 = Gravity.getAccelerationVector(this, b, gravityForce)
+    delta = delta / 1000
+
+    this.velocity.applyAcceleration(accV2)
+    this.x += this.velocity.x * delta
+    this.y += this.velocity.y * delta
 }
 
-Hoshi.prototype.isColliding = function(obj) {
+Planet.prototype.isColliding = function(obj) {
     if (this.id == obj.id) {
         return false;
     }
@@ -33,7 +36,7 @@ Hoshi.prototype.isColliding = function(obj) {
     return this.colliding;
 }
 
-Hoshi.prototype.updateCollisionState = function() {
+Planet.prototype.updateCollisionState = function() {
     if (this.colliding == false) {
         if (this.collisionState == COLLISION_STATE["EXIT"]) {
             this.collisionState = COLLISION_STATE["NOT"];
@@ -69,7 +72,7 @@ Hoshi.prototype.updateCollisionState = function() {
     }
 }
 
-Hoshi.prototype.collide = function(incObj) {
+Planet.prototype.collide = function(incObj) {
     let collSource = getRotationDirection(this, incObj),
         cObjKE = (this.mass/2) * (this.motion.v * this.motion.v),
         incObjKE = (incObj.mass/2) * (incObj.motion.v * incObj.motion.v);
