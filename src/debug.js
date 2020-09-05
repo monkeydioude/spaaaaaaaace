@@ -22,7 +22,7 @@ Debug.prototype.dummyDefPlanets = function (objs) {
     let r = [Planets.getComputedRadius(0.15), Planets.getComputedRadius(0.9)]
     objs[0] = new Planet(
         0, 
-        (canvas.width / 3) + decalX, 
+        (canvas.width / 3) + decalX - 300, 
         (canvas.height / 4) + decalY, 
         ((Math.PI * r[0] * r[0]) / 1000).toFixed(2), 
         r[0], 
@@ -31,7 +31,7 @@ Debug.prototype.dummyDefPlanets = function (objs) {
     )
     objs[1] = new Planet(
         1, 
-        (canvas.width / 2) + decalX, 
+        (canvas.width / 2) + decalX - 300, 
         (canvas.height / 2) + decalY, 
         ((Math.PI * r[1] * r[1]) / 1000).toFixed(2), 
         r[1], 
