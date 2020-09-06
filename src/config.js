@@ -9,14 +9,14 @@ let zoomActionPow = 0.10;
 let decalByMove = 25;
 
 let maxPlanets = 3;
-let planetsRadiusDef = {min: 20, max: 60};
+let planetsRadiusDef = {min: 3, max: 70};
 let planetsMinDist = 10;
-let planetBaseSpeed = 0.5;
+let planetBaseSpeed = 40;
 
 let spaceW = 10000;
 let spaceH = 10000;
-let decalX = 0;
-let decalY = 0;
+let decalX = spaceW / 2;
+let decalY = spaceH / 2;
 
 let G = Math.pow(10, -11) * 6.674;
 let gravityPullByDelta = 10

@@ -24,6 +24,7 @@ Planet.prototype.update = function(b, gravityForce, delta) {
     this.velocity.applyAcceleration(accV2)
     this.x += this.velocity.x * delta
     this.y += this.velocity.y * delta
+    this.velocity.updateDirection()
 }
 
 Planet.prototype.isColliding = function(obj) {

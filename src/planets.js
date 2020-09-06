@@ -26,14 +26,17 @@ function dumpPlanetData(p, size) {
 
     ctx.fillText("x: "+ (p.x << 0) +" y: "+ (p.y << 0), X(x), Y(y)+ sm*size);
     // ctx.strokeText("x: "+ p.x +" y: "+ p.y, p.x, p.y - size);
+    sm++;
+    ctx.fillText("velocity: "+ (Math.abs(p.velocity.x) + Math.abs(p.velocity.y) << 0) + " px/s", X(x), Y(y) + sm*size);
     // sm++;
-    // ctx.fillText("dir: "+ p.motion.d, X(x), Y(y) + sm*size);
+    // ctx.fillText("dir: "+ p.velocity.d.toFixed(2) + "", X(x), Y(y) + sm*size);
     // ctx.strokeText("radius: "+ p.r, p.x, p.y);
     sm++;
-    ctx.fillText("m: "+ p.mass + "e+24 kg", X(x), Y(y) + sm*size);
+    ctx.fillText("mass: "+ p.mass + " kg", X(x), Y(y) + sm*size);
+    // ctx.fillText("m: "+ p.mass + "e+24 kg", X(x), Y(y) + sm*size);
     // ctx.strokeText("mass: "+ p.ar, p.x, p.y + size);
-    sm++;
-    ctx.fillText("radius: "+ p.r, X(x), Y(y) + sm*size);
+    // sm++;
+    // ctx.fillText("radius: "+ p.r + " px", X(x), Y(y) + sm*size);
 }
 
 const Planets = {
