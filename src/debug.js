@@ -21,15 +21,6 @@ Debug.prototype.Toggle = function() {
 Debug.prototype.dummyDefPlanets = function (objs) {
     let r = [Planets.getComputedRadius(0.15), Planets.getComputedRadius(1.3)]
     objs[0] = new Planet(
-        0, 
-        (canvas.width / 3) + decalX, 
-        (canvas.height / 4) + decalY, 
-        ((Math.PI * r[0] * r[0]) / 1000).toFixed(2), 
-        r[0], 
-        "#"+ (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16),
-        new Velocity(190, -110)
-    )
-    objs[1] = new Planet(
         1, 
         (canvas.width / 2) + decalX, 
         (canvas.height / 2) + decalY, 
@@ -37,6 +28,15 @@ Debug.prototype.dummyDefPlanets = function (objs) {
         r[1], 
         "#"+ (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16),
         new Velocity()
+    )
+    objs[1] = new Planet(
+        0, 
+        (canvas.width / 3) + decalX, 
+        (canvas.height / 4) + decalY, 
+        ((Math.PI * r[0] * r[0]) / 1000).toFixed(2), 
+        r[0], 
+        "#"+ (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16) + (Math.random() * (16*16) << 0).toString(16),
+        new Velocity(190, -110)
     )
     objs[2] = new Planet(
         0, 
