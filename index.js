@@ -43,11 +43,11 @@ function handleKeyboard(event) {
 }
 
 function X(x) {
-    return (x - decalX) * zoomLevel;
+    return (x - decalX);
 }
 
 function Y(y) {
-    return (y - decalY) * zoomLevel;
+    return (y - decalY);
 }
 
 function process(delta, planets) {

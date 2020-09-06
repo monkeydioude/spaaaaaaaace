@@ -16,11 +16,11 @@ function dumpPlanetData(p, size) {
     let sm = 1;
 
     if (p.x + fontSize * 16 > canvas.width) {
-        x -= 120;
+        x -= (fontSize*8 + (p.r * zoomLevel)/2);
     }
 
     if (p.y + fontSize * 5 > canvas.height) {
-        y = p.y - p.r;
+        y = p.y - (p.r * zoomLevel);
         sm = -2;
     }
 
