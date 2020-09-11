@@ -1,0 +1,30 @@
+{
+  "name": "spaaaaaaaace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack --watch & webpack-dev-server --inline --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monkeydioude/spaaaaaaaace.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monkeydioude/spaaaaaaaace/issues"
+  },
+  "homepage": "https://github.com/monkeydioude/spaaaaaaaace#readme",
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "ts-loader": "^8.0.3",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
