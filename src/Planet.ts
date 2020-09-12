@@ -35,7 +35,7 @@ export default class Planet implements Entity {
             applyGravity(this.velocity, this, p, delta)
         }
         this.velocity.apply(this.coords, delta)
-        console.log(this.id, this.coords)    
+        // console.log(this.id, this.coords)
         this.entities.forEach(e => e.update(delta))
     }
 

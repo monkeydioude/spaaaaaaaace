@@ -14,7 +14,14 @@ let cTime = 0
 const main = (t1: number, delta: number, board: Canvas) => {
     // cTime += delta
     // if (cTime > Config.dpf) {
+        board.context.context.font = "30px Verdana";
         board.update((delta / 1000) * Config.gameSpeed)
+        board.context.context.fillText("Hey Chuck! 🤘", board.canvas.width / 2 - 100, 30);
+        board.context.context.fillText("🤘 Clique moi dessus 🤘", board.canvas.width / 2 - 165, 60);
+        board.canvas.addEventListener("click", (e) => {
+            const audio: HTMLAudioElement  = document.querySelector("#audio")
+            audio.play()
+        })
         // cTime -= Config.dpf
     // }
 
