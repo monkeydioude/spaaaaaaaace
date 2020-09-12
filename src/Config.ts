@@ -1,7 +1,7 @@
 const cDuration = 0
 const fps = 20
 const dpf = 1 / fps * 1000
-let zoomLevel = 1.8
+let zoomLevel = 2.5
 let zoomMin = 0.1
 const zoomActionPow = 0.10
 const decalByMove = 25
@@ -30,7 +30,8 @@ enum PlayMode {
 }
 
 const mode = PlayMode.PLAY
-const kmPerPx = 1.3e5
+// const kmPerPx = 1.3e5
+const kmPerPx = 1.8e5
 
 export default {
     gameSpeed: 365 * 24 * 60 * 15,
