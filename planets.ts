@@ -21,6 +21,14 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
     }
     return {
             "sun41": sun,
-            "earth alors": earth
+            "earth alors": earth,
+            "interloper": {
+                x: sun.x + (100.96e9 / Config.mPerPx),
+                y: sun.y + 20,
+                radius: 24,
+                mass: 3.972e24,
+                color: "red",
+                velocity: [(Config.earthSpeed / Config.mPerPx) * 1/3, (Config.earthSpeed / Config.mPerPx) * 2/3]
+            }
     }
 }
