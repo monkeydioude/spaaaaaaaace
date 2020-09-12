@@ -10,18 +10,18 @@ import Coordinates from "./src/Physic/Coordinates"
 import getPlanets from "./planets"
 
 let cTime = 0
+let play = false
 
 const main = (t1: number, delta: number, board: Canvas) => {
     // cTime += delta
     // if (cTime > Config.dpf) {
         board.context.context.font = "30px Verdana";
         board.update((delta / 1000) * Config.gameSpeed)
-        board.context.context.fillText("Hey Chuck! 🤘", board.canvas.width / 2 - 100, 30);
-        board.context.context.fillText("🤘 Clique moi dessus 🤘", board.canvas.width / 2 - 165, 60);
-        board.canvas.addEventListener("click", (e) => {
-            const audio: HTMLAudioElement  = document.querySelector("#audio")
-            audio.play()
-        })
+        if (play == false) {
+            board.context.context.fillText("Hey Chuck! 🤘", board.canvas.width / 2 - 100, 30);
+            board.context.context.fillText("🤘 Clique moi dessus 🤘", board.canvas.width / 2 - 165, 60);
+        }
+
         // cTime -= Config.dpf
     // }
 
@@ -41,7 +41,16 @@ document.onreadystatechange = function () {
     const planetsConfig = getPlanets(board, camera)
     let planets: Planet[] = []
 
-
+    board.canvas.addEventListener("mouseup", (e) => {
+        const audio: HTMLAudioElement  = document.querySelector("#audio")
+        if (play == false){
+            audio.play()
+        } else {
+            audio.pause()
+        }
+        play = !play
+    })
+    
     document.querySelector("body").addEventListener("keydown", keyboardControls.handleKeyboard.bind(keyboardControls));
     
     for (let i in planetsConfig) {
