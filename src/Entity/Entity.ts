@@ -1,4 +1,4 @@
-import Context from "../Context"
+import Context from "../Canvas/Context"
 
 export default interface Entity {
     update(delta: number): void

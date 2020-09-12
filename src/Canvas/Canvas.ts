@@ -1,6 +1,6 @@
-import Entity from "./Entity/Entity"
+import Entity from "../Entity/Entity"
 import Context from "./Context"
-import Camera from "./Camera"
+import Camera from "../Camera/Camera"
 
 export default class Canvas {
     readonly canvas: HTMLCanvasElement
@@ -15,7 +15,7 @@ export default class Canvas {
         this.entities = []
     }
 
-    append(element: HTMLElement) {
+    appendTo(element: HTMLElement) {
         element.appendChild(this.canvas)
     }
 

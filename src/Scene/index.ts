@@ -1,5 +1,5 @@
 import Entity from "../Entity/Entity"
-import Context from "../Context"
+import Context from "../Canvas/Context"
 
 export default class Scene implements Entity {
     public entities: Entity[] = []

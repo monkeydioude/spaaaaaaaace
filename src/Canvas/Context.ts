@@ -1,5 +1,5 @@
-import Model from "./Shape/Model"
-import Camera from "./Camera"
+import Model from "../Model/Model"
+import Camera from "../Camera/Camera"
 import Canvas from "./Canvas"
 
 export default class Context {
@@ -16,7 +16,7 @@ export default class Context {
     }
 
     arc(x: number, y: number, r: number, as: number, ae: number): Context {
-        this.context.arc(x, y, r, as, ae)
+        this.context.arc(this.camera.X(x), this.camera.Y(y), this.camera.zTransform(r), as, ae)
         return this
     }
 

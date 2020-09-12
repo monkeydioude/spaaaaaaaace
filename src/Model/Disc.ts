@@ -1,4 +1,4 @@
-import Context from "../Context"
+import Context from "../Canvas/Context"
 import Model from "./Model"
 
 export default class Disc implements Model {

@@ -3,7 +3,8 @@ const fps = 60
 const dpf = 1 / fps
 let canvas = null
 let ctx = null
-let zoomLevel = 0.4
+let zoomLevel = 1.2
+let zoomMin = 0.1
 const zoomActionPow = 0.10
 const decalByMove = 25
 
@@ -56,5 +57,6 @@ export default {
     fontSize,
     debug,
     PlayMode,
-    mode
+    mode,
+    zoomMin
 }

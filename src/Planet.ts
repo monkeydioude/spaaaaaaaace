@@ -1,6 +1,6 @@
 import Entity from "./Entity/Entity"
-import Context from "./Context"
-import Disc from "./Shape/Disc"
+import Context from "./Canvas/Context"
+import Disc from "./Model/Disc"
 
 export default class Planet implements Entity {
     public entities: Entity[] = []
@@ -12,7 +12,8 @@ export default class Planet implements Entity {
         public y: number,
         readonly radius: number,
         readonly color: string,
-        public velocity: any) {
+        public velocity: any
+        ) {
             this.model = new Disc(this.x, this.y, this.radius, this.color)
         }
 
