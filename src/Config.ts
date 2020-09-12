@@ -1,9 +1,7 @@
 const cDuration = 0
-const fps = 60
-const dpf = 1 / fps
-let canvas = null
-let ctx = null
-let zoomLevel = 1.2
+const fps = 20
+const dpf = 1 / fps * 1000
+let zoomLevel = 1.8
 let zoomMin = 0.1
 const zoomActionPow = 0.10
 const decalByMove = 25
@@ -18,12 +16,13 @@ const spaceH = 10000
 const decalX = spaceW / 2
 const decalY = spaceH / 2
 
-const G = Math.pow(10, -11) * 6.674
-const gravityPullByDelta = 7
+const gravityPullByDelta = 1
 const distPow = 5
 
 const fontSize = 14
 let debug = null
+const earthSpeed = 29.78 * 1000
+const G = Math.pow(10, -11) * 6.674
 
 enum PlayMode {
     PLAY,
@@ -31,17 +30,19 @@ enum PlayMode {
 }
 
 const mode = PlayMode.PLAY
+const kmPerPx = 1.3e5
 
 export default {
-    kmPerPx: 130000,
+    gameSpeed: 365 * 24 * 60 * 15,
+    // gameSpeed: 100,
+    kmPerPx,
+    mPerPx: kmPerPx * 1000,
     kgPerPxDensity: 1200,
     G,
     gravityPullByDelta,
     cDuration,
     fps,
     dpf,
-    canvas,
-    ctx,
     zoomLevel,
     zoomActionPow,
     decalByMove,
@@ -58,5 +59,6 @@ export default {
     debug,
     PlayMode,
     mode,
-    zoomMin
+    zoomMin,
+    earthSpeed
 }

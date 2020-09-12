@@ -12,6 +12,7 @@ export default class Scene implements Entity {
         context.context.clearRect(0, 0, context.canvas.canvas.width, context.canvas.canvas.height);
         context.canvas.canvas.style.backgroundColor = "#000000"
         this.entities.forEach(e => e.draw(delta, context))
+        context.context.stroke();    
     }
 
     getEntities(): Entity[] {

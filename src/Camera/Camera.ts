@@ -20,4 +20,12 @@ export default class Camera {
     zTransform(v: number): number {
         return v * (1 / this.z)
     }
+
+    relativeX(x: number): number {
+        return this.x + x
+    }
+
+    relativeY(y: number): number {
+        return this.y + y
+    }
 }

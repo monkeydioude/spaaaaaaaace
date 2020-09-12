@@ -4,14 +4,24 @@ import Scene from "./src/Scene/index"
 import Camera from "./src/Camera/Camera"
 import Keyboard from "./src/Controls/Keyboard"
 import Config from "./src/Config"
+import Velocity from "./src/Physic/Velocity"
+import Coordinates from "./src/Physic/Coordinates"
+
 import getPlanets from "./planets"
 
+let cTime = 0
+
 const main = (t1: number, delta: number, board: Canvas) => {
-    board.update(delta)
+    // cTime += delta
+    // if (cTime > Config.dpf) {
+        board.update((delta / 1000) * Config.gameSpeed)
+        // cTime -= Config.dpf
+    // }
+
     window.requestAnimationFrame(t => main(t, t - t1, board))
 }
 
-document.onreadystatechange = function (e) {
+document.onreadystatechange = function () {
     if (document.readyState != "complete") {
         return
     }
@@ -21,18 +31,25 @@ document.onreadystatechange = function (e) {
     
     const scene = new Scene()
     const keyboardControls = new Keyboard(camera, board)
-    const planets = getPlanets(board, camera)
+    const planetsConfig = getPlanets(board, camera)
+    let planets: Planet[] = []
+
 
     document.querySelector("body").addEventListener("keydown", keyboardControls.handleKeyboard.bind(keyboardControls));
     
-    for (let i in planets) {
-        const p = planets[i]
-        scene.entities.push(new Planet(i, p.x, p.y, p.radius, p.color, p.velocity))
+    for (let i in planetsConfig) {
+        const p = planetsConfig[i]
+        planets.push(new Planet(i,
+            new Coordinates(p.x, p.y),
+            p.radius,
+            p.mass,
+            p.color,
+            new Velocity(p.velocity[0], p.velocity[1]),
+            planets
+            ))
     }
 
-    // scene.entities.push(new Planet("1", Config.spaceW / 2 + board.canvas.width / 2 + 120, Config.spaceH / 2 + board.canvas.height / 2 + 120, 120, "#ffffff", [0, 0]))
-    // scene.entities.push(new Planet("2", Config.spaceW / 2 + board.canvas.width / 3 + 80, Config.spaceH / 2 + board.canvas.height / 4 + 80, 80, "#784573", [0, 0]))
-
+    scene.entities = planets
     board.entities.push(scene)
     
     main(0, 0, board)

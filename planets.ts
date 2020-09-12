@@ -1,22 +1,26 @@
-import Config from "./src/Config"
 import Canvas from "./src/Canvas/Canvas"
 import Camera from "./src/Camera/Camera"
+import Config from "./src/Config"
 
 export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
+    const sun = {
+        x: camera.relativeX(camera.z * (canvas.canvas.width / 2)),
+        y: camera.relativeY(camera.z * (canvas.canvas.height / 2)),
+        radius: 120,
+        mass: 1.9891e30,
+        color: "orange",
+        velocity: [0, 0]
+    }
+    const earth = {
+        x: sun.x - (149.96e9 / Config.mPerPx),
+        y: sun.y,
+        radius: 30,
+        mass: 5.972e24,
+        color: "skyblue",
+        velocity: [(Config.earthSpeed / Config.mPerPx) * 1/3, (Config.earthSpeed / Config.mPerPx) * 2/3]
+    }
     return {
-            "1": {
-                x: camera.X(canvas.canvas.width / 2 + 120),
-                y: camera.Y(canvas.canvas.width / 2 + 120),
-                radius: 120,
-                color: "#ffffff",
-                velocity: [0, 0]
-            },
-            "2": {
-                x: camera.X(canvas.canvas.width / 3 + 80),
-                y: camera.Y(canvas.canvas.height / 4 + 80),
-                radius: 80,
-                color: "#784573",
-                velocity: [0, 0]  
-            }
+            "sun41": sun,
+            "earth alors": earth
     }
 }
