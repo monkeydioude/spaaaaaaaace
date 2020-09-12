@@ -32,6 +32,8 @@ enum PlayMode {
 const mode = PlayMode.PLAY
 
 export default {
+    kmPerPx: 130000,
+    kgPerPxDensity: 1200,
     G,
     gravityPullByDelta,
     cDuration,
