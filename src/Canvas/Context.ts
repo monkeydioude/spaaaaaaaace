@@ -1,6 +1,7 @@
 import Model from "../Model/Model"
 import Camera from "../Camera/Camera"
 import Canvas from "./Canvas"
+import Text from "../Text/Text"
 
 export default class Context {
     constructor (
@@ -18,6 +19,19 @@ export default class Context {
     arc(x: number, y: number, r: number, as: number, ae: number): Context {
         this.context.arc(this.camera.X(x), this.camera.Y(y), this.camera.zTransform(r), as, ae)
         return this
+    }
+
+    write(text: Text, lines: string[]) {
+        const fs = text.getFontSize()
+        const ff = text.getFontFamily()
+        const c = text.getCoordinates()
+
+        this.context.beginPath()
+        this.context.font = `${fontSize}px ${ff}`
+
+        lines.map((line, i) => {
+            this.context.fillText(line, c.x, c.y + (fs * i))
+        })
     }
 
     fill(color: string): Context {
