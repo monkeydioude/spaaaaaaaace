@@ -7,8 +7,9 @@ export default class Canvas {
     readonly context: Context
     public entities: Entity[]
 
-    constructor(width: number, height: number, camera: Camera) {
+    constructor(width: number, height: number, camera: Camera, public id: string) {
         this.canvas = document.createElement("canvas")
+        this.canvas.id = this.id
         this.canvas.width = width
         this.canvas.height = height
         this.context = new Context(this.canvas.getContext("2d"), camera, this)
@@ -22,7 +23,7 @@ export default class Canvas {
     update(delta: number): void {
         this.entities.forEach(e => {
             e.update(delta)
-            e.draw(delta, this.context)
+            e.draw(this.context, delta)
         })
     }
 }

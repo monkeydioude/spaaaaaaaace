@@ -34,6 +34,12 @@ export default class Context {
         })
     }
 
+    fillRect(x: number, y: number, w: number, h: number, color: string): Context {
+        this.context.fillStyle = color
+        this.context.fillRect(this.camera.X(x), this.camera.Y(y), w, h)
+        return this
+    }
+
     fill(color: string): Context {
         this.context.fillStyle = color
         this.context.fill()

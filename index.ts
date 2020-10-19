@@ -1,24 +1,27 @@
 import Canvas from "./src/Canvas/Canvas"
 import Planet from "./src/Planet"
-import Scene from "./src/Scene/index"
+import {Scene, NoClear} from "./src/Scene/index"
 import Camera from "./src/Camera/Camera"
 import Keyboard from "./src/Controls/Keyboard"
 import Config from "./src/Config"
 import Velocity from "./src/Physic/Velocity"
 import Coordinates from "./src/Physic/Coordinates"
-
+import PlanetTrail from "./src/PlanetTrail"
 import getPlanets from "./planets"
+import Dot from "./src/Model/Dot"
 
 let cTime = 0
 
-const main = (t1: number, delta: number, board: Canvas) => {
+const main = (t1: number, delta: number, boards: Canvas[]) => {
     // cTime += delta
     // if (cTime > Config.dpf) {
-    board.update((delta / 1000) * Config.gameSpeed)
+    boards.forEach(b => {
+        b.update((delta / 1000) * Config.gameSpeed)
+    })
     // cTime -= Config.dpf
     // }
 
-    window.requestAnimationFrame(t => main(t, t - t1, board))
+    window.requestAnimationFrame(t => main(t, t - t1, boards))
 }
 
 document.onreadystatechange = function () {
@@ -26,12 +29,18 @@ document.onreadystatechange = function () {
         return
     }
     const camera = new Camera(Config.spaceW / 2, Config.spaceH / 2, Config.zoomLevel)
-    const board = new Canvas(document.body.clientWidth, document.body.clientHeight, camera)
-    board.appendTo(document.body)
+    const bgBoard = new Canvas(document.body.clientWidth, document.body.clientHeight, camera, "background")
+    const planetBoard = new Canvas(document.body.clientWidth, document.body.clientHeight, camera, "main")
+
+    bgBoard.appendTo(document.body)
+    planetBoard.appendTo(document.body)
+    bgBoard.canvas.style.backgroundColor = "#000000"
     
-    const scene = new Scene()
-    const keyboardControls = new Keyboard(camera, board)
-    const planetsConfig = getPlanets(board, camera)
+    const bgScene = new NoClear("background")
+    const planetScene = new Scene("main")
+
+    const keyboardControls = new Keyboard(camera, planetBoard)
+    const planetsConfig = getPlanets(planetBoard, camera)
     let planets: Planet[] = []
 
     document.querySelector("body").addEventListener("keydown", keyboardControls.handleKeyboard.bind(keyboardControls));
@@ -48,8 +57,11 @@ document.onreadystatechange = function () {
             ))
     }
 
-    scene.entities = planets
-    board.entities.push(scene)
+    bgScene.entities = [new PlanetTrail(planets)]
+    bgBoard.entities.push(bgScene)
+
+    planetScene.entities = planets
+    planetBoard.entities.push(planetScene)
     
-    main(0, 0, board)
+    main(0, 0, [bgBoard, planetBoard])
  }

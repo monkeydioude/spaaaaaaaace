@@ -60,9 +60,9 @@ export default class SimpleBlock implements Text, Entity {
     update(delta: number): void {
     }
 
-    draw(delta: number, context: Context): void {
+    draw(context: Context): void {
         for (let entity of this.entities) {
-            entity.draw(delta, context)
+            entity.draw(context)
         }
     }
 
