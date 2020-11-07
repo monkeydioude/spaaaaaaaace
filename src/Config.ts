@@ -1,6 +1,6 @@
 const cDuration = 0
-const fps = 20
-const dpf = 1 / fps * 1000
+const fps = 60
+const milliSecondsPerFrame = 1 / fps
 let zoomLevel = 2.5
 let zoomMin = 0.1
 const zoomActionPow = 0.10
@@ -43,7 +43,6 @@ export default {
     gravityPullByDelta,
     cDuration,
     fps,
-    dpf,
     zoomLevel,
     zoomActionPow,
     decalByMove,
@@ -61,5 +60,6 @@ export default {
     PlayMode,
     mode,
     zoomMin,
-    earthSpeed
+    earthSpeed,
+    milliSecondsPerFrame
 }

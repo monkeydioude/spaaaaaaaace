@@ -1,22 +1,25 @@
-import Entity from "./Entity/Entity"
 import Context from "./Canvas/Context"
-import Planet from "./Planet"
 import Dot from "./Model/Dot"
+import Planet from "./Planet"
+import Node from "./Entity/Node"
 
-export default class PlanetTrail implements Entity {
-    public entities: Entity[]
-
-    constructor(private planets: Planet[]) {}
-
-    update(_: number): void {}
-
-    draw(canvas: Context): void {
-        this.planets.forEach(p => {
-            canvas.draw(new Dot(p.coords, p.color))
-        })
+export default class PlanetTrail extends Node {
+    private dots: Dot[]
+    private maxDots = 999
+ 
+    constructor(private planet: Planet) {
+        super()
+        this.dots = []
     }
 
-    getEntities(): Entity[] {
-        return this.entities
+    update(_: number): void {
+        if (this.dots.length == this.maxDots) {
+            this.dots.shift()
+        }
+        this.dots.push(new Dot(this.planet.getCoordinates().clone(), this.planet.color))
+    }
+
+    draw(canvas: Context): void {
+        this.dots.forEach(d => canvas.draw(d))
     }
 }

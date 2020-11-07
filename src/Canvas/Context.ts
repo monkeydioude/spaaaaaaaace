@@ -2,6 +2,7 @@ import Model from "../Model/Model"
 import Camera from "../Camera/Camera"
 import Canvas from "./Canvas"
 import Text from "../Text/Text"
+import Config from "../Config"
 
 export default class Context {
     constructor (
@@ -27,7 +28,7 @@ export default class Context {
         const c = text.getCoordinates()
 
         this.context.beginPath()
-        this.context.font = `${fontSize}px ${ff}`
+        this.context.font = `${Config.fontSize}px ${ff}`
 
         lines.map((line, i) => {
             this.context.fillText(line, c.x, c.y + (fs * i))

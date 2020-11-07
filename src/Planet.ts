@@ -1,16 +1,13 @@
-import Entity from "./Entity/Entity"
 import Coordinates from "./Physic/Coordinates"
 import Context from "./Canvas/Context"
 import Disc from "./Model/Disc"
 import Velocity from "./Physic/Velocity"
 import applyGravity from "./Physic/Gravity"
-import Dot from "./Model/Dot"
+import Node from "./Entity/Node"
 
-export default class Planet implements Entity {
-    public entities: Entity[] = []
+export default class Planet extends Node {
     // public model: Disc
-    public model: Dot | Disc
-
+    public model: Disc
 
     constructor(
         public id: string,
@@ -21,13 +18,9 @@ export default class Planet implements Entity {
         public velocity: Velocity,
         readonly planets: Planet[]
         ) {
-            // this.model = new Dot(this.coords, this.color)
+            super()
             this.model = new Disc(this.coords, this.radius, this.color)
         }
-
-    getEntities(): Entity[] {
-        return this.entities
-    }
 
     update(delta: number): void {
         for (let i in this.planets) {
@@ -39,11 +32,12 @@ export default class Planet implements Entity {
             applyGravity(this.velocity, this, p, delta)
         }
         this.velocity.apply(this.coords, delta)
-        this.entities.forEach(e => e.update(delta))
+        super.update(delta)
     }
 
     draw(context: Context): void {
         context.draw(this.model)
+        super.draw(context)
     }
 
     getCoordinates(): Coordinates {
