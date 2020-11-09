@@ -1,3 +1,5 @@
+import {MPSec} from "./Physic/Speed"
+
 const cDuration = 0
 const fps = 60
 const milliSecondsPerFrame = 1 / fps
@@ -21,7 +23,7 @@ const distPow = 5
 
 const fontSize = 14
 let debug = null
-const earthSpeed = 29.78 * 1000
+const earthSpeed = new MPSec(29.78 * 1000) // m/s
 const G = Math.pow(10, -11) * 6.674
 
 enum PlayMode {

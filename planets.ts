@@ -1,6 +1,7 @@
 import Canvas from "./src/Canvas/Canvas"
 import Camera from "./src/Camera/Camera"
 import Config from "./src/Config"
+import {mToPx} from "./src/Physic/Distance"
 
 export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
     const sun = {
@@ -12,23 +13,23 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
         velocity: [0, 0]
     }
     const earth = {
-        x: sun.x - (149.96e9 / Config.mPerPx),
+        x: sun.x - mToPx(149.96e9),
         y: sun.y,
         radius: 30,
         mass: 5.972e24,
         color: "skyblue",
-        velocity: [(Config.earthSpeed / Config.mPerPx) * 1/3, (Config.earthSpeed / Config.mPerPx) * 2/3]
+        velocity: [mToPx(+Config.earthSpeed) * 1/3, mToPx(+Config.earthSpeed) * 2/3]
     }
     return {
             "sun41": sun,
             "earth alors": earth,
             "interloper": {
-                x: sun.x + (100.96e9 / Config.mPerPx),
+                x: sun.x + mToPx(100.96e9),
                 y: sun.y + 20,
                 radius: 24,
                 mass: 3.972e24,
                 color: "red",
-                velocity: [(Config.earthSpeed / Config.mPerPx) * 1/3, (Config.earthSpeed / Config.mPerPx) * 2/3]
+                velocity: [mToPx(+Config.earthSpeed) * 1/3, mToPx(+Config.earthSpeed) * 2/3]
             }
     }
 }
