@@ -4,6 +4,7 @@ import Disc from "./Model/Disc"
 import Velocity from "./Physic/Velocity"
 import applyGravity from "./Physic/Gravity"
 import Node from "./Entity/Node"
+import { KiloGram } from "./Unit/Mass"
 
 export default class Planet extends Node {
     // public model: Disc
@@ -13,7 +14,7 @@ export default class Planet extends Node {
         public id: string,
         public coords: Coordinates,
         readonly radius: number,
-        readonly mass: number,
+        readonly mass: KiloGram,
         readonly color: string,
         public velocity: Velocity,
         readonly planets: Planet[]

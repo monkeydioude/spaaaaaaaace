@@ -17,7 +17,8 @@ export default class Context {
         this.context.stroke()
     }
 
-    arc(x: number, y: number, r: number, as: number, ae: number): Context {
+    arc(x: number, y: number, r: number, as: number, ae: number, lineWidth: number = 1): Context {
+        this.context.lineWidth = lineWidth
         this.context.arc(this.camera.X(x), this.camera.Y(y), this.camera.zTransform(r), as, ae)
         return this
     }
@@ -45,6 +46,15 @@ export default class Context {
         this.context.fillStyle = color
         this.context.fill()
         return this
+    }
+
+    line(fromX: number, fromY: number, toX: number, toY: number, color: string, lineWidth: number = 1) {
+        this.context.lineWidth = lineWidth
+        this.context.strokeStyle = color
+        this.context.moveTo(this.camera.X(fromX), this.camera.Y(fromY))
+        this.context.lineTo(this.camera.X(toX), this.camera.Y(toY))
+        this.context.closePath()
+        this.context.stroke()
     }
 }
 

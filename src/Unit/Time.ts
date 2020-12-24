@@ -3,23 +3,22 @@ enum Unit {
     Second = MilliSecond * 1000
 }
 
-type Millisecond = number
-type Second = number
-
 interface Time {
-    toMS(): Millisecond
-    toS(): Second
+    toMS(): number
+    toS(): number
     valueOf(): number
 }
 
-class MS implements Time {
-    constructor(public time: Millisecond) {}
+export default Time
 
-    toS(): Second {
+class MilliSecond implements Time {
+    constructor(public time: number) {}
+
+    toS(): number {
         return this.time / Unit.Second
     }
 
-    toMS(): Millisecond {
+    toMS(): number {
         return this.time
     }
 
@@ -28,14 +27,14 @@ class MS implements Time {
     }
 }
 
-class S implements Time {
-    constructor(public time: Second) {}
+class Second implements Time {
+    constructor(public time: number) {}
 
-    toS(): Second {
+    toS(): number {
         return this.time
     }
 
-    toMS(): Millisecond {
+    toMS(): number {
         return this.time * Unit.MilliSecond
     }
 
@@ -43,3 +42,5 @@ class S implements Time {
         return this.time
     }
 }
+
+export {MilliSecond, Second}

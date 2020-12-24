@@ -1,4 +1,4 @@
-import {MPSec} from "./Physic/Speed"
+import {MPSec} from "./Unit/Speed"
 
 const cDuration = 0
 const fps = 60

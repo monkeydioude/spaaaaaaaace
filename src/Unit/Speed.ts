@@ -1,9 +1,16 @@
+import { Distance, Meter } from "../Unit/Distance"
+import Time, { Second } from './Time'
+
 type MetersPerSecond = number
 
 interface Speed {
     toMPSec(): MetersPerSecond
     valueOf(): number
+    getDistance(time?: Time): Distance 
+    getTime(distance?: Distance): Time
 }
+
+export default Speed
 
 class MPSec implements Speed {
     constructor(public speed: MetersPerSecond) {}
@@ -20,8 +27,22 @@ class MPSec implements Speed {
         return this.speed
     }
 
-    valueOf(): number{
+    valueOf(): number {
         return this.speed
+    }
+
+    getDistance(time?: Time): Distance {
+        if (time === undefined) {
+            time = new Second(1)
+        }
+        return new Meter(this.valueOf() / time.toS())
+    }
+
+    getTime(distance?: Distance): Time {
+        if (distance == undefined) {
+            distance = new Meter(1)
+        }
+        return new Second(distance.toMeter() / this.speed)
     }
 }
 
@@ -36,4 +57,4 @@ class KMPSec extends MPSec {
     }
 }
 
-export {Speed, KMPSec, MPSec}
+export {KMPSec, MPSec}

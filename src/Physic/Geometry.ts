@@ -1,8 +1,8 @@
 import Coordinates from "./Coordinates"
-import Config from "../Config"
+import { pxToMeter } from "../Unit/Distance";
 
 const getDistanceBetweenObjects = (a: Coordinates, b: Coordinates): number => {
-    return (Math.abs(b.x - a.x) + Math.abs(b.y - a.y)) * Config.mPerPx
+    return +pxToMeter((Math.abs(b.x - a.x) + Math.abs(b.y - a.y)))
 }
 
 function getAngularDirection(objRef: any, objDist: any) {
