@@ -16,9 +16,10 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
         velocity: new Vector2D(0, 0)
     }
 
+    console.log(sun.pos.x)
     const earth = {
         pos: new Vector2D(
-            sun.pos.x - 147.59e6,
+            sun.pos.x - 149.59e6,
             sun.pos.y,
         ),
         radius: pxToKilometre(10),
@@ -29,7 +30,7 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
     }
     return {
             "sun41": sun,
-            // "earth alors": earth
+            "earth alors": earth
             // "interloper": {
             //     pos: new Vector2D(
             //         earth.pos.x - 3844000000,

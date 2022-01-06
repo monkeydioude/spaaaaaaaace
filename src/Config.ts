@@ -36,6 +36,7 @@ export default {
     gameSpeed: 365 * 24 * 60 * 60 * 15000,
     // gameSpeed: 100,
     kmPerPx,
+    mPerPx: kmPerPx * 1000,
     kgPerPxDensity: 1200,
     G,
     cDuration,
