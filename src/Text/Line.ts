@@ -1,13 +1,13 @@
 import Text from "./Text"
 import Context from "../Canvas/Context"
-import Coordinates from "../Physic/Coordinates"
+import Vector2D from "../Physic/Vector2D"
 
 export default class Line implements Text {
     public color: string = "#ffffff"
     public fontSize: number = 14
     public fontFamily: string = "Verdana"
 
-    constructor(readonly context: Context, readonly coords: Coordinates) {}
+    constructor(readonly context: Context, readonly coords: Vector2D) {}
 
     getColor(): string {
         return this.color
@@ -26,7 +26,7 @@ export default class Line implements Text {
         return this.fontFamily
     }
 
-    getCoordinates() : Coordinates {
+    getCoordinates(): Vector2D {
         return this.coords
     }
 }

@@ -32,7 +32,7 @@ export default class Context {
         this.context.font = `${Config.fontSize}px ${ff}`
 
         lines.map((line, i) => {
-            this.context.fillText(line, c.x, c.y + (fs * i))
+            this.context.fillText(line, +c.x, +c.y + (fs * i))
         })
     }
 

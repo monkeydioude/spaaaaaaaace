@@ -1,10 +1,8 @@
-import Coordinates from "./Physic/Coordinates"
 import Context from "./Canvas/Context"
 import Disc from "./Model/Disc"
-import Velocity from "./Physic/Velocity"
-import applyGravity from "./Physic/Gravity"
+import getGravityAcc from "./Physic/Gravity"
 import Node from "./Entity/Node"
-import { KiloGram } from "./Unit/Mass"
+import Vector2D from "./Physic/Vector2D"
 
 export default class Planet extends Node {
     // public model: Disc
@@ -12,11 +10,11 @@ export default class Planet extends Node {
 
     constructor(
         public id: string,
-        public coords: Coordinates,
+        public coords: Vector2D,
         readonly radius: number,
-        readonly mass: KiloGram,
+        readonly mass: number,
         readonly color: string,
-        public velocity: Velocity,
+        public velocity: Vector2D,
         readonly planets: Planet[]
         ) {
             super()
@@ -24,15 +22,21 @@ export default class Planet extends Node {
         }
 
     update(delta: number): void {
+        if (this.id == "earth alors") {
+            // console.log(this.coords)
+        }
         for (let i in this.planets) {
-            const p = this.planets[i]
+            const other = this.planets[i]
 
-            if (p.id == this.id) {
+            if (other.id == this.id) {
                 continue
             }
-            applyGravity(this.velocity, this, p, delta)
+            const acc = getGravityAcc(this, other)
+            const accNormalized = acc.dot(delta)
+            this.velocity = this.velocity.sum(accNormalized)
         }
-        this.velocity.apply(this.coords, delta)
+        this.coords = this.coords.sum(this.velocity)
+        this.model.coords = this.coords
         super.update(delta)
     }
 
@@ -41,11 +45,11 @@ export default class Planet extends Node {
         super.draw(context)
     }
 
-    getCoordinates(): Coordinates {
+    getCoordinates(): Vector2D {
         return this.coords
     }
 
-    setCoordinates(coords: Coordinates): void {
+    setCoordinates(coords: Vector2D): void {
         this.coords = coords
     }
 }

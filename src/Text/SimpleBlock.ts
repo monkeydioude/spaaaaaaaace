@@ -1,6 +1,6 @@
 import Context from "../Canvas/Context"
 import Entity from "../Entity/Entity"
-import Coordinates from "../Physic/Coordinates"
+import Vector2D from "../Physic/Vector2D"
 import Text from "./Text"
 
 export default class SimpleBlock implements Text, Entity {
@@ -11,7 +11,7 @@ export default class SimpleBlock implements Text, Entity {
     public fontFamily: string = "Verdana"
     public entities: Entity[]
 
-    constructor(readonly context: Context, readonly coords: Coordinates, color?: string, fontSize?: number, fontFamily?: string) {
+    constructor(readonly context: Context, readonly coords: Vector2D, color?: string, fontSize?: number, fontFamily?: string) {
         if (color) {
             this.color = color
         }
@@ -31,8 +31,8 @@ export default class SimpleBlock implements Text, Entity {
         return this
     }
 
-    getCoordinates(): Coordinates {
-        return new Coordinates(this.coords.x + this.decalX, this.coords.y + this.decalY)
+    getCoordinates(): Vector2D {
+        return new Vector2D(+this.coords.x + this.decalX, +this.coords.y + this.decalY)
     }
 
     setColor(color: string): Text {

@@ -4,10 +4,9 @@ import {Scene} from "./src/Scene/index"
 import Camera from "./src/Camera/Camera"
 import Keyboard from "./src/Controls/Keyboard"
 import Config from "./src/Config"
-import Velocity from "./src/Physic/Velocity"
-import Coordinates from "./src/Physic/Coordinates"
 import PlanetTrail from "./src/PlanetTrail"
 import getPlanets from "./planets"
+import Vector2D from "./src/Physic/Vector2D"
 
 const main = (delta: number, boards: Canvas[]) => {
     // cTime += delta
@@ -45,11 +44,11 @@ document.onreadystatechange = function () {
     for (let i in planetsConfig) {
         const p = planetsConfig[i]
         const planet = new Planet(i,
-            new Coordinates(p.x, p.y),
+            new Vector2D(p.pos.x, p.pos.y),
             p.radius,
             p.mass,
             p.color,
-            new Velocity(p.velocity[0], p.velocity[1]),
+            p.velocity,
             planets
         )
         planetScene.addEntity(planet)

@@ -1,20 +1,21 @@
 import Context from "../Canvas/Context"
-import Coordinates from "../Physic/Coordinates"
+import Vector2D from "../Physic/Vector2D"
+import { kilometreToPx, pxToKilometre } from "../Unit/Distance"
 import Model from "./Model"
 
 export default class Disc implements Model {
-    constructor(public coords: Coordinates, public radius: number, public color: string) {}
+    constructor(public coords: Vector2D, public radius: number, public color: string) {}
 
     draw(ctx: Context) {
-        ctx.arc(this.coords.x, this.coords.y, this.radius, 0, 2 * Math.PI)
+        ctx.arc(kilometreToPx(this.coords.x), kilometreToPx(this.coords.y), kilometreToPx(this.radius), 0, 2 * Math.PI)
         ctx.fill(this.color)
     }
 
-    getCoordinates(): Coordinates {
+    getCoordinates(): Vector2D {
         return this.coords
     }
 
-    setCoordinates(coords: Coordinates): void {
+    setCoordinates(coords: Vector2D): void {
         this.coords = coords
     }
 }

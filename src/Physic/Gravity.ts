@@ -1,29 +1,16 @@
-import Velocity from "./Velocity";
 import Planet from "../Planet"
-import Coordinates from "./Coordinates"
-import * as Geometry from "./Geometry"
 import Config from "../Config"
-import { Meter, meterToPx } from "../Unit/Distance";
+import Vector2D from "./Vector2D"
 
-const getForce = (a: Planet, b: Planet): number => {
-    const dist = Geometry.getDistanceBetweenObjects(a.coords, b.coords)
-    if (dist == 0 || Number.isNaN(dist)) {
-        return 
-    }
-    const F = Config.G * (((+a.mass)*(+b.mass))/(dist*dist))
-
-    return F * Config.gravityPullByDelta
+const getForce = (a: Planet, b: Planet): Vector2D => {
+    // const dist = Geometry.getDistanceBetweenObjects(a.coords, b.coords)
+    const r21_v = b.coords.sub(a.coords)
+    const dist = Math.sqrt((r21_v.x*r21_v.x) + (r21_v.y*r21_v.y))
+    const f = (Config.G * a.mass * b.mass) / (dist * dist)
+    const f21_v = r21_v.divide(dist).dot(-f*-1)
+    return f21_v
 }
 
-const getForceRatio = (dirA: number, dirB: number, coordA: Coordinates, coordB: Coordinates): number => {
-    return -(dirA - dirB) / (Math.abs(coordA.x - coordB.x) + Math.abs(coordA.y - coordB.y))
-}
-
-export default (velocity: Velocity, a: Planet, b: Planet, delta: number) => {
-    const acc = meterToPx(new Meter(getForce(a, b) / (+a.mass)))
-    velocity.accelerate(
-        acc * getForceRatio(a.coords.x, b.coords.x, a.coords, b.coords),
-        acc * getForceRatio(a.coords.y, b.coords.y, a.coords, b.coords),
-        delta
-    )
+export default (a: Planet, b: Planet): Vector2D => {
+    return getForce(a, b).divide(a.mass)
 }

@@ -1,7 +1,7 @@
 import Context from "../Canvas/Context"
-import Coordinates from "../Physic/Coordinates"
+import Vector2D from "../Physic/Vector2D";
 
 export default interface Model {
     draw(ctx: Context, delta? :number): void
-    getCoordinates(): Coordinates
+    getCoordinates(): Vector2D
 }

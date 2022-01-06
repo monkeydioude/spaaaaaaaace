@@ -2,12 +2,12 @@ import Context from "./Canvas/Context"
 import Line from "./Model/Line"
 import Planet from "./Planet"
 import Node from "./Entity/Node"
-import Coordinates from "./Physic/Coordinates"
+import Vector2D from "./Physic/Vector2D"
 
 export default class PlanetTrail extends Node {
     private trails: Line[]
     private maxTrails = 999
-    private previousCoordinates: Coordinates = null
+    private previousCoordinates: Vector2D = null
  
     constructor(private planet: Planet) {
         super()

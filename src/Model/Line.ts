@@ -1,11 +1,12 @@
 import Context from "../Canvas/Context"
-import Coordinates from "../Physic/Coordinates"
 import Node from "../Entity/Node"
+import Vector2D from "../Physic/Vector2D"
+import { pxToKilometre } from "../Unit/Distance"
 
 export default class Dot extends Node {
     constructor(
-        public from: Coordinates,
-        public to: Coordinates,
+        public from: Vector2D,
+        public to: Vector2D,
         public color: string,
         public lineWidth: number = 1
     ) {
@@ -13,14 +14,21 @@ export default class Dot extends Node {
     }
 
     draw(ctx: Context) {
-        ctx.line(this.from.x, this.from.y, this.to.x, this.to.y, this.color, this.lineWidth)
+        ctx.line(
+            pxToKilometre(this.from.x),
+            pxToKilometre(this.from.y),
+            pxToKilometre(this.to.x),
+            pxToKilometre(this.to.y),
+            this.color,
+            this.lineWidth
+        )
     }
 
-    getCoordinates(): Coordinates {
+    getCoordinates(): Vector2D {
         return this.from
     }
 
-    setCoordinates(coords: Coordinates): void {
+    setCoordinates(coords: Vector2D): void {
         this.from = coords
     }
 }

@@ -1,4 +1,4 @@
-import { Distance, Meter } from "../Unit/Distance"
+import { Distance, Meter } from "./Distance"
 import Time, { Second } from './Time'
 
 type MetersPerSecond = number

@@ -1,3 +1,5 @@
+import Unit from "./Unit"
+
 interface Mass {
     toKG(): number
     valueOf(): number
@@ -5,7 +7,7 @@ interface Mass {
 
 export default Mass
 
-class KiloGram implements Mass{
+class KiloGram implements Mass, Unit {
     constructor(public mass: number){}
 
     toKG(): number {
@@ -14,6 +16,10 @@ class KiloGram implements Mass{
 
     valueOf(): number {
         return this.mass
+    }
+
+    set(m: number): void {
+        this.mass = m
     }
 }
 
