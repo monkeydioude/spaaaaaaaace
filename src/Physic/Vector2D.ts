@@ -1,10 +1,5 @@
 export default class Vector2D {
-    public x: number
-    public y: number
-    constructor (x: number, y: number) {
-        this.x = x
-        this.y = y
-    }
+    constructor (public x: number, public y: number) {}
 
     sub(vec: Vector2D | number): Vector2D {
         if (typeof vec === "number") {
@@ -35,10 +30,7 @@ export default class Vector2D {
         return new Vector2D(this.x / vec.x, this.y / vec.y)
     }
 
-    // normalize allows to normalize the vector to
-    // an other number. The held value should transform
-    // the x, y values to the number 1 of the passed number
-    normalize (number: number | number): Vector2D {
+    normalize (number: number): Vector2D {
         return this.dot(new Vector2D(number, number))
     }
 

@@ -16,7 +16,6 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
         velocity: new Vector2D(0, 0)
     }
 
-    console.log(sun.pos.x)
     const earth = {
         pos: new Vector2D(
             sun.pos.x - 149.59e6,
@@ -25,21 +24,21 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
         radius: pxToKilometre(10),
         mass: 5.972e24,
         color: "skyblue",
-        // velocity: new Vector2D(0, Config.earthSpeed).dot(new Vector2D(1/5, 4/5)),
-        velocity: new Vector2D(0, Config.earthSpeed),
+        velocity: new Vector2D(0, Config.earthSpeed).dot(new Vector2D(1/5, 1.2/5)),
+        // velocity: new Vector2D(0, 0),
     }
     return {
             "sun41": sun,
-            "earth alors": earth
-            // "interloper": {
-            //     pos: new Vector2D(
-            //         earth.pos.x - 3844000000,
-            //         earth.pos.y,
-            //     ),
-            //     radius: pxToMeter(5),
-            //     mass: 7.348e4,
-            //     color: "red",
-            //     velocity: new Vector2D(0, 0)
-            // }
+            "earth alors": earth,
+            "interloper": {
+                pos: new Vector2D(
+                    sun.pos.x + 184400000,
+                    sun.pos.y - 50000000,
+                ),
+                radius: pxToKilometre(5),
+                mass: 7.348e4,
+                color: "red",
+                velocity: new Vector2D(4, 4)
+            }
     }
 }

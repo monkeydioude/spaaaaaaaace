@@ -20,7 +20,7 @@ const distPow = 5
 
 const fontSize = 14
 let debug = null
-const earthSpeed = 29.78 * 100000 / 1.14 // km/s
+const earthSpeed = 29.78 // km/s
 const G = Math.pow(10, -11) * 6.674
 
 enum PlayMode {
@@ -33,7 +33,7 @@ const mode = PlayMode.PLAY
 const kmPerPx = 1.8e5
 
 export default {
-    gameSpeed: 365 * 24 * 60 * 60 * 15000,
+    gameSpeed: 365 * 24 * 60 * 60,
     // gameSpeed: 100,
     kmPerPx,
     mPerPx: kmPerPx * 1000,

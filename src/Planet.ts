@@ -31,11 +31,10 @@ export default class Planet extends Node {
             if (other.id == this.id) {
                 continue
             }
-            const acc = getGravityAcc(this, other)
-            const accNormalized = acc.dot(delta)
-            this.velocity = this.velocity.sum(accNormalized)
+            this.velocity = this.velocity.sum(getGravityAcc(this, other))
         }
-        this.coords = this.coords.sum(this.velocity)
+        this.coords = this.coords.sum(this.velocity.normalize(delta))
+        console.log(this.id, this.coords, this.velocity.normalize(delta))
         this.model.coords = this.coords
         super.update(delta)
     }
