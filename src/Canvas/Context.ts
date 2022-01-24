@@ -1,8 +1,6 @@
-import Model from "../Model/Model"
-import Camera from "../Camera/Camera"
-import Canvas from "./Canvas"
-import Text from "../Text/Text"
-import Config from "../Config"
+import Model from "../Model/Model";
+import Camera from "../Camera/Camera";
+import Canvas from "./Canvas";
 
 export default class Context {
     constructor (
@@ -23,17 +21,18 @@ export default class Context {
         return this
     }
 
-    write(text: Text, lines: string[]) {
-        const fs = text.getFontSize()
-        const ff = text.getFontFamily()
-        const c = text.getCoordinates()
+    write(text: string, x: number, y: number) {
+        // const fs = text.getFontSize()
+        // const ff = text.getFontFamily()
+        // const c = text.getCoordinates()
 
-        this.context.beginPath()
-        this.context.font = `${Config.fontSize}px ${ff}`
+        // this.context.beginPath()
+        // this.context.font = `${Config.fontSize}px ${ff}`
 
-        lines.map((line, i) => {
-            this.context.fillText(line, +c.x, +c.y + (fs * i))
-        })
+        this.context.fillText(text, x, y);
+        // lines.map((line, i) => {
+        //     this.context.fillText(line, +c.x, +c.y + (fs * i))
+        // })
     }
 
     fillRect(x: number, y: number, w: number, h: number, color: string): Context {

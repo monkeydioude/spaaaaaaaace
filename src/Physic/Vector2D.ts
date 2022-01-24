@@ -37,4 +37,8 @@ export default class Vector2D {
     clone(): Vector2D {
         return new Vector2D(this.x, this.y)
     }
+
+    insideOnRadius(trial: Vector2D, radius: number): boolean {
+        return Math.pow(trial.x - this.x, 2) + Math.pow(trial.y - this.y, 2) <= Math.pow(radius, 2);
+    }
 }

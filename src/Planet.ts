@@ -3,10 +3,12 @@ import Disc from "./Model/Disc"
 import getGravityAcc from "./Physic/Gravity"
 import Node from "./Entity/Node"
 import Vector2D from "./Physic/Vector2D"
+import PlanetStats from "./Menu/Component/PlanetStats"
 
 export default class Planet extends Node {
     // public model: Disc
     public model: Disc
+    protected stats: PlanetStats
 
     constructor(
         public id: string,
@@ -17,8 +19,9 @@ export default class Planet extends Node {
         public velocity: Vector2D,
         readonly planets: Planet[]
         ) {
-            super()
-            this.model = new Disc(this.coords, this.radius, this.color)
+            super();
+            this.model = new Disc(this.coords, this.radius, this.color);
+            this.stats = new PlanetStats(this);
         }
 
     update(delta: number): void {
@@ -26,29 +29,29 @@ export default class Planet extends Node {
             // console.log(this.coords)
         }
         for (let i in this.planets) {
-            const other = this.planets[i]
+            const other = this.planets[i];
 
             if (other.id == this.id) {
-                continue
+                continue;
             }
-            this.velocity = this.velocity.sum(getGravityAcc(this, other))
+            this.velocity = this.velocity.sum(getGravityAcc(this, other));
         }
-        this.coords = this.coords.sum(this.velocity.normalize(delta))
-        console.log(this.id, this.coords, this.velocity.normalize(delta))
-        this.model.coords = this.coords
-        super.update(delta)
+        this.coords = this.coords.sum(this.velocity.normalize(delta));
+        this.model.coords = this.coords;
+        super.update(delta);
     }
 
     draw(context: Context): void {
-        context.draw(this.model)
-        super.draw(context)
+        context.draw(this.model);
+        this.stats.draw(context);
+        super.draw(context);
     }
 
     getCoordinates(): Vector2D {
-        return this.coords
+        return this.coords;
     }
 
     setCoordinates(coords: Vector2D): void {
-        this.coords = coords
+        this.coords = coords;
     }
 }

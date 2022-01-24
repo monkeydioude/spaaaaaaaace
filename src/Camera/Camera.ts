@@ -22,10 +22,10 @@ export default class Camera {
     }
 
     relativeX(x: number): number {
-        return this.x + x
+        return this.x + (this.z * x)
     }
 
     relativeY(y: number): number {
-        return this.y + y
+        return this.y + (this.z * y)
     }
 }

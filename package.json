@@ -30,6 +30,7 @@
   "dependencies": {
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.0.3",
+    "canvas-rich-text": "^2.0.0-alpha.2",
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "ts-node": "^9.0.0"

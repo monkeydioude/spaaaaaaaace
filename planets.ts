@@ -7,8 +7,8 @@ import Vector2D from "./src/Physic/Vector2D"
 export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
     const sun = {
         pos: new Vector2D(
-            pxToKilometre(camera.relativeX(camera.z * (canvas.canvas.width / 2))),
-            pxToKilometre(camera.relativeY(camera.z * (canvas.canvas.height / 2))),
+            pxToKilometre(camera.relativeX(canvas.canvas.width / 2)),
+            pxToKilometre(camera.relativeY(canvas.canvas.height / 2)),
         ),
         radius: pxToKilometre(120),
         mass: 1.9891e30,

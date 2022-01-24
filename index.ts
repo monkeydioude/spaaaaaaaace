@@ -1,45 +1,65 @@
-import Canvas from "./src/Canvas/Canvas"
-import Planet from "./src/Planet"
-import {Scene} from "./src/Scene/index"
-import Camera from "./src/Camera/Camera"
-import Keyboard from "./src/Controls/Keyboard"
+import Canvas from "./src/Canvas/Canvas";
+import Planet from "./src/Planet";
+import {Scene} from "./src/Scene";
+import Camera from "./src/Camera/Camera";
+import { Keyboard, Mouse} from "./src/Controls";
 import Config from "./src/Config"
-import PlanetTrail from "./src/PlanetTrail"
-import getPlanets from "./planets"
-import Vector2D from "./src/Physic/Vector2D"
+import PlanetTrail from "./src/PlanetTrail";
+import getPlanets from "./planets";
+import Vector2D from "./src/Physic/Vector2D";
+import { resetIt } from "./src/Menu/Component/PlanetStats";
+import { pxToKilometre, kilometreToPx } from "./src/Unit/Distance";
 
 const main = (delta: number, boards: Canvas[]) => {
     // cTime += delta
     // if (cTime > Config.dpf) {
-    let nBefore = window.performance.now()
+    let nBefore = window.performance.now();
     boards.forEach(b => {
-        b.update(delta * Config.gameSpeed)
+        b.update(delta * Config.gameSpeed);
     })
-    let nAfter = window.performance.now()
+    let nAfter = window.performance.now();
     // cTime -= Config.dpf
     // }
-    setTimeout(() => main(Config.milliSecondsPerFrame, boards), (delta * 1000) - (nAfter - nBefore))
+    setTimeout(() => main(Config.milliSecondsPerFrame, boards), (delta * 1000) - (nAfter - nBefore));
 }
 
 document.onreadystatechange = function () {
     if (document.readyState != "complete") {
-        return
+        return;
     }
     const camera = new Camera(Config.spaceW / 2, Config.spaceH / 2, Config.zoomLevel)
-    const bgBoard = new Canvas(document.body.clientWidth, document.body.clientHeight, camera, "background")
-    const planetBoard = new Canvas(document.body.clientWidth, document.body.clientHeight, camera, "main")
+    const bgBoard = new Canvas(document.body.clientWidth, document.body.clientHeight, camera, "background");
+    const planetBoard = new Canvas(document.body.clientWidth, document.body.clientHeight, camera, "main");
 
-    bgBoard.appendTo(document.body)
-    planetBoard.appendTo(document.body)
-    bgBoard.canvas.style.backgroundColor = "#000000"
+    bgBoard.appendTo(document.body);
+    planetBoard.appendTo(document.body);
+    bgBoard.canvas.style.backgroundColor = "#000000";
     
-    const planetScene = new Scene("main")
+    const planetScene = new Scene("main");
 
-    const keyboardControls = new Keyboard(camera, planetBoard)
-    const planetsConfig = getPlanets(planetBoard, camera)
-    let planets: Planet[] = []
+    const keyboardControls = new Keyboard(camera, planetBoard);
+    const mouseControl = new Mouse();
+    const planetsConfig = getPlanets(planetBoard, camera);
+    const domBody = document.querySelector("body");
+    let planets: Planet[] = [];
 
-    document.querySelector("body").addEventListener("keydown", keyboardControls.handleKeyboard.bind(keyboardControls));
+    mouseControl.onClick((x: number, y: number): void => {
+        planets.forEach((p: Planet) => {
+            if (
+                p.coords.insideOnRadius(
+                    new Vector2D(
+                        pxToKilometre(camera.relativeX(x)),
+                        pxToKilometre(camera.relativeY(y))
+                    ),
+                p.radius + pxToKilometre(80))
+            ) {
+                console.log(p.id);
+            }
+        })
+    });
+
+    domBody.addEventListener("keydown", keyboardControls.handleKeyboard.bind(keyboardControls));
+    domBody.addEventListener("click", mouseControl.handleMouse.bind(mouseControl));
     
     for (let i in planetsConfig) {
         const p = planetsConfig[i]
@@ -51,12 +71,13 @@ document.onreadystatechange = function () {
             p.velocity,
             planets
         )
-        planetScene.addEntity(planet)
-        planetScene.addEntity(new PlanetTrail(planet))
-        planets.push(planet)
+        planetScene.addEntity(planet);
+        planetScene.addEntity(new PlanetTrail(planet));
+        planets.push(planet);
     }
 
-    planetBoard.addEntity(planetScene)
+    planetBoard.addEntity(planetScene);
+    planetScene.addEntity(new resetIt());
     
-    main(Config.milliSecondsPerFrame, [bgBoard, planetBoard])
+    main(Config.milliSecondsPerFrame, [bgBoard, planetBoard]);
  }
