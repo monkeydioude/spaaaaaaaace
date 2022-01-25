@@ -1,3 +1,4 @@
+import { kilometreToPx } from "../../Unit/Distance";
 import Context from "../../Canvas/Context";
 import Entity from "../../Entity/Entity";
 import Vector2D from "../../Physic/Vector2D";
@@ -14,18 +15,22 @@ export default class PlanetStats {
     }
 
     draw(context: Context) {
-        const windowH = 100;
+        const windowH = 200;
         const floatFix = 6;
         new Text(
             new Vector2D(20, 20 + (windowH * this.localIt)),
-            new Vector2D(200, windowH),
-            this.planet.color
+            new Vector2D(220, windowH),
+            this.planet.color,
+            20
         ).setLines([
             `> ${this.planet.id}`,
-            `  mass: ${this.planet.mass}`,
-            '  velocity:',
-            `  - x: ${this.planet.velocity.x > 0 ? " " : ""}${this.planet.velocity.x.toFixed(floatFix)} km/s`,
-            `  - y: ${this.planet.velocity.y > 0 ? " " : ""}${this.planet.velocity.y.toFixed(floatFix)} km/s`,
+            `  mass: ${this.planet.mass} kg`,
+            '  velocity (~):',
+            `    x: ${this.planet.velocity.x > 0 ? " " : ""}${this.planet.velocity.x.toFixed(floatFix)} km/s`,
+            `    y: ${this.planet.velocity.y > 0 ? " " : ""}${this.planet.velocity.y.toFixed(floatFix)} km/s`,
+            '  coordinates (~):',
+            `    x: ${ kilometreToPx(this.planet.coords.x).toFixed(floatFix)}`,
+            `    y: ${ kilometreToPx(this.planet.coords.y).toFixed(floatFix)}`,
         ]).draw(context);
     }
 }

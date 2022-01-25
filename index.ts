@@ -8,7 +8,7 @@ import PlanetTrail from "./src/PlanetTrail";
 import getPlanets from "./planets";
 import Vector2D from "./src/Physic/Vector2D";
 import { resetIt } from "./src/Menu/Component/PlanetStats";
-import { pxToKilometre, kilometreToPx } from "./src/Unit/Distance";
+import { pxToKilometre } from "./src/Unit/Distance";
 
 const main = (delta: number, boards: Canvas[]) => {
     // cTime += delta

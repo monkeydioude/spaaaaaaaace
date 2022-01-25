@@ -21,13 +21,14 @@ export default class Context {
         return this
     }
 
-    write(text: string, x: number, y: number) {
+    write(text: string, x: number, y: number, color: string, fontSize: number, fontFamily: string) {
         // const fs = text.getFontSize()
         // const ff = text.getFontFamily()
         // const c = text.getCoordinates()
 
-        // this.context.beginPath()
-        // this.context.font = `${Config.fontSize}px ${ff}`
+        // this.context.beginPath();
+        this.context.font = `${fontSize}px ${fontFamily}`;
+        this.context.fillStyle = color;
 
         this.context.fillText(text, x, y);
         // lines.map((line, i) => {

@@ -33,7 +33,7 @@ const mode = PlayMode.PLAY
 const kmPerPx = 1.8e5
 
 export default {
-    gameSpeed: 365 * 24 * 60 * 60,
+    gameSpeed: 365 * 24 * 60 * 60 / 4,
     // gameSpeed: 100,
     kmPerPx,
     mPerPx: kmPerPx * 1000,

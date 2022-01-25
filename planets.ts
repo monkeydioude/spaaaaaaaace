@@ -24,7 +24,7 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
         radius: pxToKilometre(10),
         mass: 5.972e24,
         color: "skyblue",
-        velocity: new Vector2D(0, Config.earthSpeed).dot(new Vector2D(1/5, 1.2/5)),
+        velocity: new Vector2D(0, Config.earthSpeed).dot(new Vector2D(1/2, 1/2)),
         // velocity: new Vector2D(0, 0),
     }
     return {
@@ -38,7 +38,7 @@ export default (canvas: Canvas, camera: Camera): {[key: string]: any} => {
                 radius: pxToKilometre(5),
                 mass: 7.348e4,
                 color: "red",
-                velocity: new Vector2D(4, 4)
+                velocity: new Vector2D(-16.5, -5)
             }
     }
 }
