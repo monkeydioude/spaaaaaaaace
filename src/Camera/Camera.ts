@@ -31,7 +31,7 @@ export default class Camera {
         return this.y + (this.z * y)
     }
 
-    down(): boolean {
+    up(): boolean {
         if (this.y - Config.decalByMove <= 0) {
             return false;
         }
@@ -39,7 +39,7 @@ export default class Camera {
         return true;
     }
 
-    right(): boolean {
+    left(): boolean {
         if (this.x - Config.decalByMove <= 0) {
             return false;
         }
@@ -47,7 +47,7 @@ export default class Camera {
         return true;
     }
 
-    left(): boolean {
+    right(): boolean {
         if (this.x >= Config.spaceW) {
             return false;
         }
@@ -55,7 +55,7 @@ export default class Camera {
         return true;
     }
 
-    up(): boolean {
+    down(): boolean {
         if (this.y >= Config.spaceH) {
             return false;
         }

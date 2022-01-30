@@ -9,9 +9,14 @@ const idFuncs: { [key: string]: (camera: Camera) => void } = {
     "#zoom-out": (camera: Camera) => camera.zoomOut(),
 }
 
+let intervalSeed: NodeJS.Timeout = null;
+
 const Controls = (camera: Camera) => {
     for (const id in idFuncs) {
-        document.querySelector(id).addEventListener("click", () => idFuncs[id](camera))
+        document.body.addEventListener("mouseup", () => clearInterval(intervalSeed));
+        document.querySelector(id).addEventListener("mousedown", () => {
+            intervalSeed = setInterval(() => idFuncs[id](camera), 100);
+        })
     }
 }
 
