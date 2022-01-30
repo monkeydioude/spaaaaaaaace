@@ -2,14 +2,15 @@ import Entity from "../Entity/Entity"
 import Context from "./Context"
 import Camera from "../Camera/Camera"
 import Node from "../Entity/Node"
+import Vector2D from "../Physic/Vector2D"
 
-export default class Canvas extends Node{
+export default class Canvas extends Node {
     readonly canvas: HTMLCanvasElement
     readonly context: Context
     public entities: Entity[] = []
 
     constructor(width: number, height: number, camera: Camera, public id: string) {
-        super()
+        super(new Vector2D(0, 0,));
         this.canvas = document.createElement("canvas")
         this.canvas.id = this.id
         this.canvas.width = width

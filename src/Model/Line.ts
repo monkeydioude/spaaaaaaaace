@@ -3,14 +3,14 @@ import Node from "../Entity/Node"
 import Vector2D from "../Physic/Vector2D"
 import { pxToKilometre } from "../Unit/Distance"
 
-export default class Dot extends Node {
+export default class Line extends Node {
     constructor(
         public from: Vector2D,
         public to: Vector2D,
         public color: string,
         public lineWidth: number = 1
     ) {
-        super()
+        super(from);
     }
 
     draw(ctx: Context) {
@@ -24,11 +24,12 @@ export default class Dot extends Node {
         )
     }
 
-    getCoordinates(): Vector2D {
-        return this.from
-    }
-
     setCoordinates(coords: Vector2D): void {
         this.from = coords
+    }
+
+    getSizes(): Vector2D {
+        const t = this.from.sub(this.to);
+        return new Vector2D(Math.abs(t.x), Math.abs(t.y));
     }
 }

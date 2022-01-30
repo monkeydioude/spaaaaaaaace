@@ -18,7 +18,7 @@ export default class Text extends Block {
         return ctx.context.measureText(line).width > width;
     }
 
-    breakLine(width: number, line: string, fontSize: number, ctx: Context): string[] {
+    breakLine(width: number, line: string, ctx: Context): string[] {
         if (!this.shouldBreakLine(width, line, ctx)) {
             return [];
         }
@@ -58,7 +58,7 @@ export default class Text extends Block {
         ctx: Context
     ) {
         lines.forEach((line: string, i: number) => {
-            const bl = this.breakLine(w, line, fontSize, ctx);
+            const bl = this.breakLine(w, line, ctx);
             if (bl.length > 0) {
                 this.writeLines(
                     bl,
@@ -83,7 +83,6 @@ export default class Text extends Block {
             }
             const canvasY = y + (fontSize * (i + iOverload));
             const canvasX = x;
-            console.log("y:", canvasY, "i:", i, "iOverload:", iOverload, "i+iOverload:", (i + iOverload), "text:", line)
             ctx.write(line, canvasX, canvasY, color, fontSize, fontFamily);
         });
     }

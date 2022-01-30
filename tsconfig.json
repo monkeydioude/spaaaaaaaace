@@ -9,5 +9,10 @@
       "target": "es6",
       "jsx": "react",
       "allowJs": true
-    }
+    },
+    "exclude": [
+      "./tests/",
+      "./node_modules/",
+      "./dist/"
+    ]
   }

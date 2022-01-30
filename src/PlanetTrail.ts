@@ -10,7 +10,7 @@ export default class PlanetTrail extends Node {
     private previousCoordinates: Vector2D = null
  
     constructor(private planet: Planet) {
-        super()
+        super(new Vector2D(0, 0));
         this.trails = []
         this.previousCoordinates = this.planet.getCoordinates().clone()
     }

@@ -1,6 +1,7 @@
 import Camera from "../Camera/Camera"
 import Config from "../Config"
 import Canvas from "../Canvas/Canvas"
+import { togglePause } from "../../index"
 
 export default class Keyboard {
     public actionByKeycode: {[key: number]: Function}
@@ -9,44 +10,20 @@ export default class Keyboard {
         this.actionByKeycode = {
             // 68: () => {debug.Toggle();},
             // 83: () => {mode = mode == PAUSE ? PLAY : PAUSE;},
+            80: () => {
+                togglePause();
+            },
             82: () => {
                 this.camera.x = 0
                 this.camera.y = 0
                 this.camera.z = 1
             },
-            90: () => {
-                if (this.camera.z <= Config.zoomMin) {
-                    return
-                }
-                this.camera.z -= Config.zoomActionPow
-            },
-            88: () => {
-                this.camera.z += Config.zoomActionPow
-            },
-            37: () => {
-                if (this.camera.x - Config.decalByMove <= 0) {
-                    return;
-                }
-                this.camera.x -= Config.decalByMove
-            },
-            38: () => {
-                if (this.camera.y - Config.decalByMove <= 0) {
-                    return;
-                }
-                this.camera.y -= Config.decalByMove
-            },
-            39: () => {
-                if (this.camera.x >= Config.spaceW) {
-                    return;
-                }
-                this.camera.x += Config.decalByMove
-            },
-            40: () => {
-                if (this.camera.y >= Config.spaceH) {
-                    return;
-                }
-                this.camera.y += Config.decalByMove
-            }
+            90: () => this.camera.zoomIn(),
+            88: () => this.camera.zoomOut(),
+            37: () => this.camera.left(),
+            38: () => this.camera.up(),
+            39: () => this.camera.right(),
+            40: () => this.camera.down()
         }
     }
 

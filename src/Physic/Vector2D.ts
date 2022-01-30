@@ -41,4 +41,8 @@ export default class Vector2D {
     insideOnRadius(trial: Vector2D, radius: number): boolean {
         return Math.pow(trial.x - this.x, 2) + Math.pow(trial.y - this.y, 2) <= Math.pow(radius, 2);
     }
+
+    getNorm(): number {
+        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+    }
 }

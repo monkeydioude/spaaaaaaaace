@@ -12,14 +12,14 @@ export default class Planet extends Node {
 
     constructor(
         public id: string,
-        public coords: Vector2D,
+        coords: Vector2D,
         readonly radius: number,
         readonly mass: number,
         readonly color: string,
         public velocity: Vector2D,
         readonly planets: Planet[]
         ) {
-            super();
+            super(coords);
             this.model = new Disc(this.coords, this.radius, this.color);
             this.stats = new PlanetStats(this);
         }
@@ -47,11 +47,11 @@ export default class Planet extends Node {
         super.draw(context);
     }
 
-    getCoordinates(): Vector2D {
-        return this.coords;
-    }
-
     setCoordinates(coords: Vector2D): void {
         this.coords = coords;
+    }
+
+    getSizes(): Vector2D {
+        return new Vector2D(this.radius*2, this.radius*2);
     }
 }

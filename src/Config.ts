@@ -21,7 +21,7 @@ const distPow = 5
 const fontSize = 14
 let debug = null
 const earthSpeed = 29.78 // km/s
-const G = Math.pow(10, -11) * 6.674
+const G = 6.674e-11
 
 enum PlayMode {
     PLAY,
