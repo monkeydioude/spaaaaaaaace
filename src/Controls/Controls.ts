@@ -13,9 +13,11 @@ let intervalSeed: NodeJS.Timeout = null;
 
 const Controls = (camera: Camera) => {
     for (const id in idFuncs) {
-        document.body.addEventListener("mouseup", () => clearInterval(intervalSeed));
+        idFuncs[id](camera);
+        // document.body.addEventListener("mouseup", () => clearInterval(intervalSeed));
         document.querySelector(id).addEventListener("mousedown", () => {
-            intervalSeed = setInterval(() => idFuncs[id](camera), 100);
+            idFuncs[id](camera);
+            // intervalSeed = setInterval(() => idFuncs[id](camera), 100);
         })
     }
 }
