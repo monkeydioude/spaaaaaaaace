@@ -35,12 +35,16 @@
                 padding: 5rem 0;
             }
 
+            button {
+                border: none;
+            }
+
             #cross {
                 width: 15rem;
                 position: relative;
                 left: 5rem;
             }
-            #cross > div {
+            #cross > button {
                 width: 5rem;
                 height: 5rem;
                 background-color: rgba(255, 255, 0, 0.726);;
@@ -65,7 +69,7 @@
                 width: 21rem;
                 height: 7rem;
             }
-            #zoom > div {
+            #zoom > button {
                 width: 7rem;
                 height: 7rem;
                 display: inline-block;
@@ -95,20 +99,20 @@
         <div id="scene">
             <div id="controls">
                 <div id="cross">
-                    <div id="btn-up">▲</div>
-                    <div id="btn-left">
+                    <button id="btn-up">▲</button>
+                    <button id="btn-left">
                         ◀
-                    </div><div id="btn-right">
+                    </button><button id="btn-right">
                         ▶
-                    </div>
-                    <div id="btn-down">▼</div>
+                    </button>
+                    <button id="btn-down">▼</button>
                 </div>
                 <div id="zoom">
-                    <div id="zoom-in">
+                    <button id="zoom-in">
                         +
-                    </div><div id="zoom-out">
+                    </button><button id="zoom-out">
                         -
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
